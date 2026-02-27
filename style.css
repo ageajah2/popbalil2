@@ -14,9 +14,15 @@
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: transparent;
-    /* Remove tap blue box on mobile */
     user-select: none;
-    /* Prevent text selection while clicking */
+    -webkit-user-select: none;
+}
+
+input,
+button,
+textarea {
+    user-select: auto;
+    -webkit-user-select: auto;
 }
 
 body,

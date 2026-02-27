@@ -172,7 +172,14 @@ const handleEvent = (e, isStart) => {
 
 window.addEventListener('mousedown', (e) => { if (e.button === 0) handleEvent(e, true); });
 window.addEventListener('mouseup', (e) => handleEvent(e, false));
-window.addEventListener('touchstart', (e) => { if (e.cancelable) e.preventDefault(); handleEvent(e, true); }, { passive: false });
+window.addEventListener('touchstart', (e) => {
+    // Enable typing in inputs and clicking buttons
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('.glass')) {
+        return;
+    }
+    if (e.cancelable) e.preventDefault();
+    handleEvent(e, true);
+}, { passive: false });
 window.addEventListener('touchend', (e) => handleEvent(e, false));
 
 // Keyboard support
