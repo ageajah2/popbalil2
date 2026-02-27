@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pop Balil 2</title>
+    <meta name="description" content="Pop Balil 2 - The ultimate clicking game with Lil1 and Lil2!">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="login-overlay" class="glass-heavy">
+        <div id="login-box">
+            <h2>Maligayang pagdating</h2>
+            <p>Masukkan username!<br>(dapat diubah nanti)</p>
+            <input type="text" id="username-input" placeholder="Type name here..." maxlength="20">
+            <button id="start-btn" class="btn-primary">START</button>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <div id="score-container" class="glass">
+            <h1 id="score-label">POPS</h1>
+            <div id="score">0</div>
+        </div>
+
+        <div id="character-wrapper">
+            <img id="character" src="lil1.png" alt="Pop Balil Character" draggable="false">
+        </div>
+
+        <div id="leaderboard-container" class="glass">
+            <h3>TOP SINGKO</h3>
+            <div id="leaderboard-list">
+                <div class="leaderboard-item loading">Loading rankings...</div>
+            </div>
+            <div id="user-info">
+                Hi, <span id="display-username">Manusia</span>!
+            </div>
+        </div>
+
+        <div id="footer">
+            <p>Made with &hearts; for Indonesia</p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
