@@ -11,7 +11,10 @@ const characters = [
     { closed: 'chara/zulhas1.png', open: 'chara/zulhas2.png' },
     { closed: 'chara/arie1.webp', open: 'chara/arie2.webp' },
     { closed: 'chara/gplate1.png', open: 'chara/gplate2.png' },
-    { closed: 'chara/sambo1.png', open: 'chara/sambo2.png' }
+    { closed: 'chara/sambo1.png', open: 'chara/sambo2.png' },
+    { closed: 'chara/erick1.webp', open: 'chara/erick2.webp' },
+    { closed: 'chara/yaqut1.webp', open: 'chara/yaqut2.webp' },
+    { closed: 'chara/zon1.webp', open: 'chara/zon2.webp' }
 ];
 let currentCharIndex = 0;
 
