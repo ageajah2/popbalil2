@@ -2,8 +2,8 @@
     --primary-color: #ffca28;
     /* Golden Yellow for a vibrant feel */
     --accent-color: #ff9800;
-    --glass-bg: rgba(255, 255, 255, 0.15);
-    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-bg: rgba(0, 0, 0, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.15);
     --glass-blur: blur(15px);
     --text-color: #ffffff;
     --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -283,7 +283,6 @@ html {
     justify-content: center;
     padding: 15px 40px;
     margin-top: 20px;
-    transition: transform 0.2s ease;
     z-index: 10;
 }
 

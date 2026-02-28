@@ -4,10 +4,11 @@ const socket = typeof io !== 'undefined' ? io() : null;
 
 // --- ASSETS & ELEMENTS ---
 const characters = [
-    { closed: 'cat1.png', open: 'cat2.png' },
-    { closed: 'balil1.png', open: 'balil2.png' },
-    { closed: 'pigai1.png', open: 'pigai2.png' },
-    { closed: 'saroni1.png', open: 'saroni2.png' }
+    { closed: 'chara/cat1.png', open: 'chara/cat2.png' },
+    { closed: 'chara/balil1.png', open: 'chara/balil2.png' },
+    { closed: 'chara/pigai1.png', open: 'chara/pigai2.png' },
+    { closed: 'chara/saroni1.png', open: 'chara/saroni2.png' },
+    { closed: 'chara/zulhas1.png', open: 'chara/zulhas2.png' }
 ];
 let currentCharIndex = 0;
 
