@@ -167,7 +167,7 @@ html {
     cursor: pointer;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     border-radius: 25px 25px 0 0;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
 }
 
 #leaderboard-container.active {
