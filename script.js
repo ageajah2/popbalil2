@@ -155,6 +155,7 @@ const pop = (event) => {
 
     // Visuals
     characterEl.src = IMG_OPEN;
+    characterEl.classList.add('active-pop');
     scoreContainer.classList.remove('pulse');
     void scoreContainer.offsetWidth;
     scoreContainer.classList.add('pulse');
@@ -163,6 +164,7 @@ const pop = (event) => {
 
 const unpop = () => {
     characterEl.src = IMG_CLOSED;
+    characterEl.classList.remove('active-pop');
 };
 
 // ... (Rest of existing text effects and event listeners)

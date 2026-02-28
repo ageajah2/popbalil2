@@ -333,7 +333,8 @@ html {
 }
 
 /* Visual Feedback on Click */
-#character-wrapper:active #character {
+#character-wrapper:active #character,
+#character.active-pop {
     transform: scale(0.92);
 }
 
