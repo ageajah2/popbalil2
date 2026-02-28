@@ -3,9 +3,28 @@ const socket = typeof io !== 'undefined' ? io() : null;
 
 
 // --- ASSETS & ELEMENTS ---
-const IMG_CLOSED = 'balil1.png';
-const IMG_OPEN = 'balil2.png';
+const characters = [
+    { closed: 'cat1.png', open: 'cat2.png' },
+    { closed: 'balil1.png', open: 'balil2.png' },
+    { closed: 'pigai1.png', open: 'pigai2.png' },
+    { closed: 'saroni1.png', open: 'saroni2.png' }
+];
+let currentCharIndex = 0;
+
+let IMG_CLOSED = characters[currentCharIndex].closed;
+let IMG_OPEN = characters[currentCharIndex].open;
 const SOUND_POP = 'popp.mp3';
+
+function changeCharacter(direction) {
+    if (direction === 'right') {
+        currentCharIndex = (currentCharIndex + 1) % characters.length;
+    } else if (direction === 'left') {
+        currentCharIndex = (currentCharIndex - 1 + characters.length) % characters.length;
+    }
+    IMG_CLOSED = characters[currentCharIndex].closed;
+    IMG_OPEN = characters[currentCharIndex].open;
+    characterEl.src = IMG_CLOSED;
+}
 
 const scoreEl = document.getElementById('score');
 const scoreContainer = document.getElementById('score-container');
@@ -170,17 +189,54 @@ const handleEvent = (e, isStart) => {
     }
 };
 
-window.addEventListener('mousedown', (e) => { if (e.button === 0) handleEvent(e, true); });
-window.addEventListener('mouseup', (e) => handleEvent(e, false));
+let startX = null;
+let startTime = null;
+
+window.addEventListener('mousedown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('.glass')) return;
+    startX = e.screenX;
+    startTime = Date.now();
+    if (e.button === 0) handleEvent(e, true);
+});
+
+window.addEventListener('mouseup', (e) => {
+    if (startX !== null && startTime !== null) {
+        const diff = e.screenX - startX;
+        const timeDiff = Date.now() - startTime;
+        if (Math.abs(diff) > 50 && timeDiff >= 300) {
+            if (diff > 0) changeCharacter('right');
+            else changeCharacter('left');
+        }
+        startX = null;
+        startTime = null;
+    }
+    handleEvent(e, false);
+});
+
 window.addEventListener('touchstart', (e) => {
     // Enable typing in inputs and clicking buttons
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('.glass')) {
         return;
     }
+    startX = e.changedTouches[0].screenX;
+    startTime = Date.now();
     if (e.cancelable) e.preventDefault();
     handleEvent(e, true);
 }, { passive: false });
-window.addEventListener('touchend', (e) => handleEvent(e, false));
+
+window.addEventListener('touchend', (e) => {
+    if (startX !== null && startTime !== null) {
+        const diff = e.changedTouches[0].screenX - startX;
+        const timeDiff = Date.now() - startTime;
+        if (Math.abs(diff) > 50 && timeDiff >= 300) {
+            if (diff > 0) changeCharacter('right');
+            else changeCharacter('left');
+        }
+        startX = null;
+        startTime = null;
+    }
+    handleEvent(e, false);
+});
 
 // Keyboard support
 window.addEventListener('keydown', (e) => { if ((e.code === 'Space' || e.code === 'Enter') && !e.repeat) pop(e); });
