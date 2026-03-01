@@ -14,6 +14,7 @@ const characters = [
     { closed: 'chara/sambo1.png', open: 'chara/sambo2.png' },
     { closed: 'chara/erick1.webp', open: 'chara/erick2.webp' },
     { closed: 'chara/yaqut1.webp', open: 'chara/yaqut2.webp' },
+    { closed: 'chara/luhut1.webp', open: 'chara/luhut2.webp' },
     { closed: 'chara/zon1.webp', open: 'chara/zon2.webp' }
 ];
 let currentCharIndex = 0;
@@ -22,15 +23,35 @@ let IMG_CLOSED = characters[currentCharIndex].closed;
 let IMG_OPEN = characters[currentCharIndex].open;
 const SOUND_POP = 'popp.mp3';
 
+let isAnimatingCharacter = false;
+
 function changeCharacter(direction) {
-    if (direction === 'right') {
-        currentCharIndex = (currentCharIndex + 1) % characters.length;
-    } else if (direction === 'left') {
-        currentCharIndex = (currentCharIndex - 1 + characters.length) % characters.length;
-    }
-    IMG_CLOSED = characters[currentCharIndex].closed;
-    IMG_OPEN = characters[currentCharIndex].open;
-    characterEl.src = IMG_CLOSED;
+    if (isAnimatingCharacter) return;
+    isAnimatingCharacter = true;
+
+    const outClass = direction === 'right' ? 'slide-left-out' : 'slide-right-out';
+    const inClass = direction === 'right' ? 'slide-right-in' : 'slide-left-in';
+
+    characterEl.classList.add(outClass);
+
+    setTimeout(() => {
+        if (direction === 'right') {
+            currentCharIndex = (currentCharIndex + 1) % characters.length;
+        } else if (direction === 'left') {
+            currentCharIndex = (currentCharIndex - 1 + characters.length) % characters.length;
+        }
+        IMG_CLOSED = characters[currentCharIndex].closed;
+        IMG_OPEN = characters[currentCharIndex].open;
+        characterEl.src = IMG_CLOSED;
+
+        characterEl.classList.remove(outClass);
+        characterEl.classList.add(inClass);
+
+        setTimeout(() => {
+            characterEl.classList.remove(inClass);
+            isAnimatingCharacter = false;
+        }, 150);
+    }, 150);
 }
 
 const scoreEl = document.getElementById('score');

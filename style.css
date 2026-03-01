@@ -425,3 +425,58 @@ html {
         max-height: 50vh;
     }
 }
+
+/* Slider animations for character change */
+.slide-left-out {
+    animation: slideLeftOut 0.15s ease-in forwards !important;
+}
+
+.slide-right-in {
+    animation: slideRightIn 0.15s ease-out forwards !important;
+}
+
+.slide-right-out {
+    animation: slideRightOut 0.15s ease-in forwards !important;
+}
+
+.slide-left-in {
+    animation: slideLeftIn 0.15s ease-out forwards !important;
+}
+
+@keyframes slideLeftOut {
+    to {
+        transform: translateX(-50vw) scale(0.92);
+        opacity: 0;
+    }
+}
+
+@keyframes slideRightIn {
+    from {
+        transform: translateX(50vw) scale(0.92);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideRightOut {
+    to {
+        transform: translateX(50vw) scale(0.92);
+        opacity: 0;
+    }
+}
+
+@keyframes slideLeftIn {
+    from {
+        transform: translateX(-50vw) scale(0.92);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
