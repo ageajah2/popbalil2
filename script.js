@@ -29,8 +29,8 @@ function changeCharacter(direction) {
     if (isAnimatingCharacter) return;
     isAnimatingCharacter = true;
 
-    const outClass = direction === 'right' ? 'slide-left-out' : 'slide-right-out';
-    const inClass = direction === 'right' ? 'slide-right-in' : 'slide-left-in';
+    const outClass = direction === 'right' ? 'slide-right-out' : 'slide-left-out';
+    const inClass = direction === 'right' ? 'slide-left-in' : 'slide-right-in';
 
     characterEl.classList.add(outClass);
 
