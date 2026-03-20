@@ -64,6 +64,24 @@ const displayUsername = document.getElementById('display-username');
 const leaderboardList = document.getElementById('leaderboard-list');
 const leaderboardContainer = document.getElementById('leaderboard-container');
 
+// --- QRIS & DONATE ---
+const donateBtn = document.getElementById('donate-btn');
+const qrisOverlay = document.getElementById('qris-overlay');
+const closeQrisBtn = document.getElementById('close-qris-btn');
+
+donateBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    qrisOverlay.classList.remove('hidden');
+});
+
+closeQrisBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    qrisOverlay.classList.add('hidden');
+});
+
+qrisOverlay.addEventListener('mousedown', (e) => e.stopPropagation());
+qrisOverlay.addEventListener('touchstart', (e) => e.stopPropagation());
+
 // --- LEADERBOARD TOGGLE ---
 leaderboardContainer.addEventListener('mousedown', (e) => e.stopPropagation());
 leaderboardContainer.addEventListener('touchstart', (e) => e.stopPropagation());
