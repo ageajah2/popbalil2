@@ -15,9 +15,15 @@ const characters = [
     { closed: 'chara/erick1.webp', open: 'chara/erick2.webp' },
     { closed: 'chara/yaqut1.webp', open: 'chara/yaqut2.webp' },
     { closed: 'chara/luhut1.webp', open: 'chara/luhut2.webp' },
-    { closed: 'chara/zon1.webp', open: 'chara/zon2.webp' }
 ];
-let currentCharIndex = 0;
+
+// Preload all images
+characters.forEach(char => {
+    new Image().src = char.closed;
+    new Image().src = char.open;
+});
+
+let currentCharIndex = Math.floor(Math.random() * characters.length);
 
 let IMG_CLOSED = characters[currentCharIndex].closed;
 let IMG_OPEN = characters[currentCharIndex].open;
@@ -57,6 +63,7 @@ function changeCharacter(direction) {
 const scoreEl = document.getElementById('score');
 const scoreContainer = document.getElementById('score-container');
 const characterEl = document.getElementById('character');
+characterEl.src = IMG_CLOSED;
 const loginOverlay = document.getElementById('login-overlay');
 const usernameInput = document.getElementById('username-input');
 const startBtn = document.getElementById('start-btn');
@@ -251,7 +258,7 @@ window.addEventListener('mouseup', (e) => {
     if (startX !== null && startTime !== null) {
         const diff = e.screenX - startX;
         const timeDiff = Date.now() - startTime;
-        if (Math.abs(diff) > 50 && timeDiff >= 300) {
+        if (Math.abs(diff) > 50 && timeDiff >= 150) {
             if (diff > 0) changeCharacter('right');
             else changeCharacter('left');
         }
